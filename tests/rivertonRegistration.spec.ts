@@ -1,52 +1,51 @@
 import { test } from '@playwright/test';
 import { RivertonRegistrationPage } from '../pages/RivertonRegistrationPage';
 
-test.describe('Riverton Registration Flow', () => {
-  test('should complete the registration access request form', async ({ page }) => {
-    const registrationPage = new RivertonRegistrationPage(page);
+test.describe('Riverton Access Registration', () => {
+  test('should submit access request with valid details', async ({ page }) => {
+    // Make sure the class name here matches the import above
+    const accessPage = new RivertonRegistrationPage(page);
 
-    // 1. Navigate & Start
-    await registrationPage.navigate();
+    // 1. Open Portal & Request Access
+    await accessPage.navigate();
 
-    // 2. Firm Information & Postcode Lookup
-    await registrationPage.fillFirmDetails({
+    // 2. Fill Firm Information & Lookup Address
+    await accessPage.fillFirmDetails({
       accessOption: '1',
       mortgageType: '2',
-      tradingName: 'Test',
-      tradingType: '1',
-      companyName: 'New Comp Registar',
-      fcaFirmRef: '4356765',
-      companyRegNumber: '6767765',
-      postcode: '45',
-      addressMatchText: 'Flat 45 140 Southwark Bridge',
+      tradingName: 'Test A',
+      tradingType: '3',
+      fcaFirmRef: '4545656',
+      postcode: '56',
+      addressMatchText: 'Flat 56 130 Webber Street',
     });
 
-    // 3. Network & Mortgage Clubs Selection
-    await registrationPage.selectNetworkAndClubs('589', [
+    // 3. Select Network & Multiple Mortgage Clubs
+    await accessPage.selectNetworkAndClubs('589', [
       'Advise Wise Mortgage Club',
-      'Air Platinum',
+      'Air Platinum Advance',
+      'Air Elite',
     ]);
 
-    // 4. Personal & Contact Information
-    await registrationPage.fillPersonalDetails({
+    // 4. Fill Personal & Contact Information
+    await accessPage.fillPersonalDetails({
       title: 'Mr',
       firstName: 'Test',
-      lastName: 'Abhir',
-      fcaIndRef: '06756546',
-      preferredPhone: '07897686576',
-      additionalPhone: '07897865756',
-      email: 'testerabhi@fin.tech',
+      lastName: 'New Member',
+      fcaIndividualRef: '86576578',
+      preferredPhone: '07989877666',
+      email: 'testnew@fin.tech',
     });
 
-    // 5. Bank Account Information
-    await registrationPage.fillBankDetails({
-      accountHolder: 'test',
+    // 5. Fill Bank Details
+    await accessPage.fillBankDetails({
+      accountHolderName: 'Test',
       accountNumber: '70872490',
       sortCode: '404784',
     });
 
-    // 6. Declarations & Password Setup
-    await registrationPage.confirmDeclarations();
-    await registrationPage.setPassword('Abhi@12345678');
+    // 6. Accept Terms & Set Password
+    await accessPage.acceptDeclarations();
+    await accessPage.setPassword('Password1!!!!');
   });
 });
