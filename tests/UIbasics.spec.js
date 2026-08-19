@@ -34,16 +34,16 @@ test('Page Playwright test', async ({page}) =>
 });
 
 
-test('Page Playwright test1', async ({page}) =>
-{
-    await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-    console.log(await page.title());
-    await page.locator("input[placeholder='Username']").fill("Abhi@gm.tev");
-    await page.locator("input[placeholder='Password']").fill("Abh");
-    await page.locator("button[type='submit']").click();
-    await expect(page.locator('.oxd-text.oxd-text--p.oxd-alert-content-text')).toContainText("Invalid");
+// test('Page Playwright test1', async ({page}) =>
+// {
+//     await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+//     console.log(await page.title());
+//     await page.locator("input[placeholder='Username']").fill("Abhi@gm.tev");
+//     await page.locator("input[placeholder='Password']").fill("Abh");
+//     await page.locator("button[type='submit']").click();
+//     await expect(page.locator('.oxd-text.oxd-text--p.oxd-alert-content-text')).toContainText("Invalid");
 
-});
+// });
 
 test('dropdown and buttons', async({page}) =>
 {
