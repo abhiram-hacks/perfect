@@ -1,11 +1,19 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  // ... other configs
+  testDir: './tests',
+  fullyParallel: true,
+  reporter: [['html', { open: 'on-failure' }], ['list']],
   use: {
-    /* Run headless in CI, headed locally if desired */
-    headless: true, // or: process.env.CI ? true : false,
-    trace: 'on-first-retry',
+    headless: false,
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+    viewport: { width: 1280, height: 720 },
   },
-  // ...
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+  ],
 });

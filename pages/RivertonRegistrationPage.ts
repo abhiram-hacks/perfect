@@ -28,10 +28,7 @@ export interface BankDetails {
 export class RivertonRegistrationPage {
   readonly page: Page;
 
-  // Navigation
   readonly requestAccessBtn: Locator;
-
-  // Firm Details
   readonly accessOptionSelect: Locator;
   readonly mortgageTypeSelect: Locator;
   readonly tradingNameInput: Locator;
@@ -40,12 +37,10 @@ export class RivertonRegistrationPage {
   readonly postcodeInput: Locator;
   readonly postcodeSearchBtn: Locator;
 
-  // Network & Clubs
   readonly networkSelect: Locator;
   readonly networkConfirmYesBtn: Locator;
   readonly transferClubBtn: Locator;
 
-  // Personal Details
   readonly titleSelect: Locator;
   readonly firstNameInput: Locator;
   readonly lastNameInput: Locator;
@@ -54,12 +49,10 @@ export class RivertonRegistrationPage {
   readonly workEmailInput: Locator;
   readonly confirmWorkEmailInput: Locator;
 
-  // Bank Details
   readonly accountHolderInput: Locator;
   readonly accountNumberInput: Locator;
   readonly sortCodeInput: Locator;
 
-  // Declarations & Passwords
   readonly declarationConsent1: Locator;
   readonly declarationConsent2: Locator;
   readonly createPasswordInput: Locator;
@@ -68,10 +61,7 @@ export class RivertonRegistrationPage {
   constructor(page: Page) {
     this.page = page;
 
-    // Navigation
     this.requestAccessBtn = page.getByText('Request access');
-
-    // Firm Details
     this.accessOptionSelect = page.getByLabel('Which of these options best');
     this.mortgageTypeSelect = page.getByLabel('What type of mortgage will');
     this.tradingNameInput = page.getByRole('textbox', { name: 'Trading Name *' });
@@ -80,12 +70,10 @@ export class RivertonRegistrationPage {
     this.postcodeInput = page.getByRole('group', { name: 'Firm Details' }).getByLabel('Postcode');
     this.postcodeSearchBtn = page.getByRole('group', { name: 'Firm Details' }).getByRole('button');
 
-    // Network & Clubs
     this.networkSelect = page.getByLabel('Choose your Network');
     this.networkConfirmYesBtn = page.getByText('Yes').first();
     this.transferClubBtn = page.getByRole('button', { name: '⇨' });
 
-    // Personal Details
     this.titleSelect = page.getByLabel('Title', { exact: true });
     this.firstNameInput = page.getByRole('textbox', { name: 'First Name *' });
     this.lastNameInput = page.getByRole('textbox', { name: 'Last Name *' });
@@ -94,12 +82,10 @@ export class RivertonRegistrationPage {
     this.workEmailInput = page.getByRole('textbox', { name: 'Work Email Address *', exact: true });
     this.confirmWorkEmailInput = page.getByRole('textbox', { name: 'Confirm Work Email Address *' });
 
-    // Bank Details
     this.accountHolderInput = page.getByRole('textbox', { name: 'Name(s) of Account Holder(s) *' });
     this.accountNumberInput = page.getByRole('textbox', { name: 'Account Number *' });
     this.sortCodeInput = page.getByRole('textbox', { name: 'Sort Code *' });
 
-    // Declarations & Password
     this.declarationConsent1 = page.getByText('Yes').nth(1);
     this.declarationConsent2 = page.getByText('Yes').nth(2);
     this.createPasswordInput = page.getByRole('textbox', { name: 'Create Password *' }).first();
@@ -118,7 +104,6 @@ export class RivertonRegistrationPage {
     await this.tradingTypeSelect.selectOption(firm.tradingType);
     await this.fcaFirmRefInput.fill(firm.fcaFirmRef);
 
-    // Address lookup
     await this.postcodeInput.fill(firm.postcode);
     await this.postcodeSearchBtn.click();
     await this.page.getByRole('link', { name: firm.addressMatchText }).click();

@@ -3,7 +3,6 @@ import { Page, Locator } from '@playwright/test';
 export class EkycPage {
   readonly page: Page;
 
-  // Locators
   readonly mobileInput: Locator;
   readonly getStartedBtn: Locator;
   readonly stateDropdownTrigger: Locator;
